@@ -1,6 +1,6 @@
 # Modules
 
-Tillicum uses the [Lmod](https://lmod.readthedocs.io/en/latest/) environment module system to manage software. Each loaded module dynamically updates your environment variables (e.g. `PATH`, `LD_LIBRARY_PATH`) so that the corresponding executables and libraries become available.
+Hyak uses the [Lmod](https://lmod.readthedocs.io/en/latest/) environment module system to manage software. Each loaded module dynamically updates your environment variables (e.g. `PATH`, `LD_LIBRARY_PATH`) so that the corresponding executables and libraries become available.
 
 ## Understanding Your Environment
 

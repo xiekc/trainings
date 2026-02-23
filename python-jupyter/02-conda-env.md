@@ -1,16 +1,10 @@
-# Computing Environment
-
-Tillicum provides a flexible software environment for research computing. You can run software through modules (via Lmod) or containers (via Apptainer). 
-
-Here we'll focuse on how to build a custom computing environment using the minimal Conda module provided on Tillicum.
-
-## Conda Environments
+# Conda Environment
 
 Conda allows you to create isolated environments that include specific versions of Python, libraries, and tools. 
 
 A [conda cheatsheet](https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html) from Anaconda that you may find helpful.
 
-### Load Conda Module
+## Load Conda Module
 
 First, load the Conda module:
 
@@ -39,7 +33,7 @@ ________________________________________________________________________________
 
 After loading the module, the `conda` command becomes available. You can now create and manage your own environments.
 
-### Create and Manage Conda Environments
+## Create and Manage Conda Environments
 
 For example, create an environment named "myenv" with Python 3.12 and the NumPy package:
 
@@ -69,7 +63,7 @@ Remove an environment:
 conda env remove --name myenv
 ```
 
-### Customize Environment and Package Locations
+## Customize Environment and Package Locations
 
 There are two ways to specify where your Conda environments and packages are stored.
 
@@ -97,7 +91,7 @@ pkgs_dirs:
 
 This will place all of your environments and package caches in this directory by default, and you won't have to worry about specifying the full prefix to your environment when installing it or activating it.
 
-### Installing Packages with `pip`
+## Installing Packages with `pip`
 
 You can use `pip` inside a Conda environment to install Python packages. Anaconda provides some [best practices](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) for using `pip` with Conda. Our suggested use of pip is inside a conda environment. For example:
 
@@ -111,10 +105,6 @@ This ensures that `pip` installs packages into the active Conda environment — 
 
 See the [pip documentation](https://pip.pypa.io/en/stable/cli/pip_install/) for more information.
 
-## Containers
+## (Optional) Containers
 
-Tillicum supports Apptainer containers for running portable, reproducible software stacks. We highly recommend using containers to build your software environment on Tillicum, particularly for GPU workflows with complex dependencies. [NVIDIA NGC Catalog](https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=&page=&pageSize=) has pre-built containers with CUDA and NVIDIA drivers configured, which work well with the Tillicum environment.
-
-We will hold separate, hands-on training sessions for building and running containers on Tillicum. 
-
-> 🗓️ **Stay Tuned:** Check our [Research Computing Calendar](https://calendar.washington.edu/sea_uwit-rc) for upcoming training events.
+Hyak supports Apptainer containers for running portable, reproducible software stacks. We highly recommend using containers to build your software environment on Hyak, particularly for GPU workflows with complex dependencies. [NVIDIA NGC Catalog](https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=&page=&pageSize=) has pre-built containers with CUDA and NVIDIA drivers configured, which work well with the Hyak environment.
