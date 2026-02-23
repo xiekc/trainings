@@ -1,6 +1,10 @@
 # Jupyter on Open OnDemand
 
-Tillicum provides JupyterLab and Jupyter Notebook access through [Open OnDemand (OOD)](https://tillicum-ood.hyak.uw.edu/).
+Hyak Klone and Tillicum provides JupyterLab and Jupyter Notebook access through Open OnDemand (OOD).
+
+[Hyak Klone OOD](https://ondemand.hyak.uw.edu/)
+
+[Tillicum OOD](https://tillicum-ood.hyak.uw.edu/)
 
 > 📝 **NOTE:** UW VPN is required to access OOD if you are off-campus.
 
@@ -107,4 +111,4 @@ When you finish:
 2. Return to OOD and click **Delete** on your running session card.
 3. The compute resources will be released back to the cluster.
 
-> ⚠️ **WARNING:** Leaving sessions running consumes GPU hours and counts toward your project usage.
+> ⚠️ **WARNING:** For Tillicum, leaving sessions running consumes GPU hours and counts toward your project usage.
