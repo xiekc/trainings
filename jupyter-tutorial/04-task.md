@@ -25,7 +25,7 @@ All hands-on exercise should be done in your `/gscratch/scrubbed` directory. Let
 # Skip this step if you've already completed it.
 mkdir /gscratch/scrubbed/$USER
 cd /gscratch/scrubbed/$USER
-git clone https://github.com/UWrc/python-jupyter.git
+git clone https://github.com/UWrc/jupyter-tutorial.git
 ```
 
 > 📝 **NOTE:** The `$USER` variable automatically expands to your username.
