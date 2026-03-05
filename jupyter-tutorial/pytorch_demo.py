@@ -36,10 +36,10 @@ def main():
     print(f"Elapsed time: {elapsed:.2f} seconds\n")
 
     # Save results
-    with open(f"./results.txt", "w") as f:
+    with open(f"./pytorch_results.txt", "w") as f:
         f.write(f"Learning Rate: {learning_rates}\nTime: {elapsed:.2f}s\nChecksum: {checksum:.3e}\n")
 
-    print(f"Results saved to results.txt")
+    print(f"Results saved to pytorch_results.txt")
 
 if __name__ == "__main__":
     main()

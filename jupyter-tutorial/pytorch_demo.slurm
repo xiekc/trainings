@@ -3,7 +3,7 @@
 #SBATCH --job-name=pytorch
 #SBATCH --account=uwit
 #SBATCH --partition=ckpt-all
-#SBATCH --gpus=1
+#SBATCH --gpus=rtx6k:1
 #SBATCH --mem=20G
 #SBATCH --time=00:10:00
 #SBATCH --output=%x_%j.out

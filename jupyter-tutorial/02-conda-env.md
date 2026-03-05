@@ -6,7 +6,7 @@ If you’re new to Conda, you may find this helpful: [Conda Cheatsheet](https://
 
 ## Load Conda Module
 
-Hyak provides a minimal Miniforge (Conda) installation that you can utilize to build custom Conda environment. You must load it before using conda:
+Hyak provides a minimal Miniforge (Conda) installation that you can utilize to build custom Conda environment. You must load it before using `conda`:
 
 ```bash
 salloc -A uwit -p ckpt-all -N 1 --time=2:00:00
@@ -19,7 +19,7 @@ The `conda` command becomes available now.
 
 ## Create and Manage Conda Environments
 
-### 1. Choose Where to Store Environments and Packages (Important)
+### Choose Where to Store Environments and Packages (Important)
 
 By default, the system Conda stores environments in your home directory (`$HOME/.conda/envs`). However, your home directory on Hyak has a **10 GB** quota, which is often insufficient. 
 
@@ -46,7 +46,7 @@ pkgs_dirs:
 always_copy: true
 ```
 
-Replace <myproject> and <myfolder> with real paths.
+Replace \<myproject\> and \<myfolder\> with real paths. Save (^O) and exit (^X) before continue in the shell.
 
 **Option B: Use `--prefex` for Explicit Control**
 
@@ -54,19 +54,19 @@ Manually set the path to your Conda environment by `--prefix` and always activat
 
 ```bash
 module load conda
-conda create --prefix /gpfs/<myproject>/<myfolder>/myenv python=3.12
-conda activate /gpfs/<myproject>/<myfolder>/myenv
+conda create --prefix /gscratch/<myproject>/<myfolder>/myenv python=3.12
+conda activate /gscratch/<myproject>/<myfolder>/myenv
 ```
 
 This gives you complete control over where each environment lives.
 
-### 2. Create a Conda environment
+### Create a Conda environment
 
-For example, create a custom Conda environment named "myenv" with Python 3.12 and other scientific packages installed:
+For example, create a custom Conda environment named `myenv` with Python 3.12 and other scientific packages installed:
 
 ```bash
 module load conda
-conda create -n myenv python=3.12 numpy scipy pandas matplotlib
+conda create -n myenv python=3.12 numpy scipy pandas
 ```
 
 Activate the environment:
@@ -79,7 +79,7 @@ Once activated, all `python`, `pip`, and `conda install` commands apply only to 
 
 Conda has several default channels that will be used first for package installation with `conda install`. You can use another channel beyond the default channels, but we suggest that you select your channel carefully.
 
-### 3. Manage Your Conda Environments
+### Manage Your Conda Environments
 
 List installed packages in current environment:
 
@@ -96,10 +96,10 @@ conda env list
 Remove an environment:
 
 ```bash
-conda env remove --name myenv
+conda env remove -n myenv
 ```
 
-## Install Packages with `pip`
+### Install Packages with `pip`
 
 You can use `pip` inside a Conda environment to install Python packages. Anaconda provides some [best practices](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) for using `pip` with Conda. Our suggested use of pip is inside a conda environment.
 

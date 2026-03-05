@@ -3,6 +3,7 @@
 #SBATCH --job-name=python_batch
 #SBATCH --account=uwit
 #SBATCH --partition=ckpt-all
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=10G
 #SBATCH --time=00:10:00

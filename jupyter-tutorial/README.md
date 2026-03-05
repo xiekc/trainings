@@ -1,4 +1,4 @@
-# Hyak Jupyter Tutorial
+# Managing Python Environments with Conda in Jupyter on Hyak
 
 ## Overview
 
@@ -8,7 +8,7 @@ This tutorial focuses on managing Python environments with Conda and using them 
 
 Working with Conda in an HPC environment can feel confusing at first — especially when combining:
 
-- LMOD software modules
+- Lmod software modules
 - Conda environments
 - Slurm job scheduling
 - Jupyter via Open OnDemand
@@ -30,7 +30,7 @@ Each topic in this tutorial is contained in its own Markdown file for easy navig
 | Section | Description |
 | :- | :- |
 | [00-preparation.md](./00-preparation.md) | Account and access prerequisites |
-| [01-modules.md](./01-modules.md) | Using LMOD to load software modules |
+| [01-modules.md](./01-modules.md) | Using Lmod to load software modules |
 | [02-conda-env.md](./02-conda-env.md) | Creating, activating, and managing Conda environments on Hyak |
 | [03-python.md](./03-python.md) | Running Python scripts via Slurm (interactive and batch) |
 | [04-ood-jupyter.md](./04-ood-jupyter.md) | Launching Jupyter via Open OnDemand and switching kernels |
@@ -38,7 +38,7 @@ Each topic in this tutorial is contained in its own Markdown file for easy navig
 
 ## Introduction Video
 
-A link to the recording of the **March 5, 2026 Hyak Jupyter workshop** will be added here when available.
+A link to the recording of the **March 5, 2026 Hyak Jupyter Workshop** will be added here when available.
 
 ## Feedback
 

@@ -1,6 +1,6 @@
 # Jupyter on Open OnDemand
 
-Hyak Klone and Tillicum provide access to JupyterLab and Jupyter Notebook through the Open OnDemand (OOD) web portal.
+Hyak Klone and Tillicum provide access to JupyterLab and Jupyter Notebook through the **Open OnDemand (OOD) web portal**.
 
 🚀 [Hyak Klone OOD](https://ondemand.hyak.uw.edu/)
 
@@ -50,7 +50,7 @@ For this tutorial, configure the form as follows:
 - **Account**: uwit (if available)
 - **Partition**: ckpt-all (community checkpoint resources; queue time may vary)
 - **Server Environment**: "Module: jupyter/minimal"
-> 📝 **NOTE:** The environments listed in the form are maintained by the Hyak team.
+> 📝 **NOTE:** The environments listed in the form are maintained by the Hyak team. In addition, you can also creat your own Jupyter-Apptainer image and select 'Custom Container'.
 - **Jupyter User Interface**: JupyterLab (recommended). If you prefer the classic interface, select “Jupyter Notebook” instead.
 
 The following fields of the form set up the resources requested for your job:
@@ -62,7 +62,7 @@ The following fields of the form set up the resources requested for your job:
 
 Optional GPU settings if your workflow requires GPUs:
 
-- **GPU Type** to **NVIDIA GeForce 2080 Ti** or **NVIDIA Quadro RTX 6000**
+- **GPU Type** to available GPUs
 - **GPUs** to 1
 
 Finally, click the **Launch** button.
@@ -77,10 +77,10 @@ After submission, OOD will:
 
 The session page will display:
 
-- Slurm Job ID – the scheduler identifier (the number in the parentheses).
-- Host – the compute node running your job.
-- Status – changes to Running when ready
-- Session ID – links to detailed logs for troubleshooting.
+- Slurm Job ID — the scheduler identifier (the number in the parentheses).
+- Host — the compute node running your job.
+- Status — changes to Running when ready
+- Session ID — links to detailed logs for troubleshooting.
 
 Click **Connect to Jupyter** once the job is running. A new browser tab will open with your live Jupyter environment running on a compute node.
 
@@ -110,20 +110,18 @@ conda install ipykernel
 
 **Step 2: Register Your Environment as a Kernel**
 
-Run `ipykernel install` in your activated environment to set up a Jupyter [`kernelspec`](https://jupyter-client.readthedocs.io/en/latest/kernels.html).
+Run `ipykernel install` in your activated environment to set up a Jupyter [`kernelspec`](https://jupyter-client.readthedocs.io/en/latest/kernels.html):
 
 ```bash
 python -m ipykernel install --user --name myenv --display-name "Python (myenv)"
 ```
 
-Explanation:
+Command breakdown:
 
 - `--name`: internal environment name
 - `--display-name`: name shown in JupyterLab
 
 This creates a `kernelspec` file `$HOME/.local/share/jupyter/kernels/myenv/kernel.json`, which registers your environment as a Jupyter kernel visible in Jupyter notebook. Any packages installed in your Conda environment will be available to you.
-
-> 💡 **TIP:** Containers can also be registered as Jupyter kernels.
 
 Example `kernel.json` file:
 
@@ -158,7 +156,7 @@ You can list installed kernels with:
 jupyter kernelspec list
 ```
 
-**Optional: Use Containers as Jupyter Kernels**
+**Use Containers as Jupyter Kernels (Optional)**
 
 Containers can also be registered as Jupyter kernels, which allows you to run notebooks inside a containerized environment.
 
@@ -192,8 +190,8 @@ Example `kernel.json` file:
 
 Update the following fields as needed:
 
-- Container image name and path (e.g., /gscratch/.../*.sif)
-- Python interpreter path inside the container
+- Container image name and path (e.g., /gscratch/scrubbed/$USER/pytorch.sif)
+- Python interpreter path inside the container (e.g., /usr/bin/python3)
 - display_name, which determines how the kernel appears in Jupyter.
 
 Once registered, this kernel will appear alongside other Python environments in the Jupyter Launcher and Kernel selection menus.

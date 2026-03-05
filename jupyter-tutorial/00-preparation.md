@@ -113,10 +113,10 @@ ln -s /gscratch/scrubbed/$USER ~/scratch
 This creates a directory called `scratch` in your home directory that points to your workspace for this tutorial. View that it was set up properly by listing your home directory with the long format option, which will show the symbolic link and its true path.
 
 ```bash
-ls -l
+ls -l ~
 ```
 
-Now, when you launch Jupyter through Open OnDemand, you can easily navigate to ~/scratch and work directly in your scratch storage.
+Now, when you launch Jupyter through Open OnDemand, you can easily navigate to `~/scratch` and work directly in your scratch storage.
 
 > 📝 **Important notes about symbolic links:**
 > 

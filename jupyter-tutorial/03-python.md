@@ -16,7 +16,7 @@ which python3
 python3 --version
 ```
 
-Hyak also provides a shared Miniforge (Conda) module with Python preinstalled. The recommended workflow is to create and manage your own custom Conda environments, where you control the Python version and installed packages.
+Hyak also provides a shared Miniforge (Conda) module with Python preinstalled.
 
 ```bash
 salloc -A uwit -p ckpt-all -N 1 --time=2:00:00
@@ -29,11 +29,13 @@ python --version
 
 You should see a Python executable located within the system Miniforge Python path.
 
+The recommended workflow is to create and manage your own custom Conda environments, where you control the Python version and installed packages.
+
 ## Run a Simple Python Script
 
 ### Run with an Interactive Job
 
-In the **Python Versions on Hyak** section above, you already requested an interactive job and were allocated to a compute node.
+In the [Python Versions on Hyak](./03-python.md/#python-versions-on-hyak) section above, you already requested an interactive job and were allocated to a compute node.
 
 Now run the provided example Python script using the Conda base environment:
 
@@ -67,7 +69,6 @@ Next, we will run a Python script as a Slurm batch job, which allows it to execu
 First examine the Python script used in this example:
 
 ```bash
-cd /gscratch/scrubbed/$USER/jupyter-tutorial
 cat pytorch_demo.py
 ```
 
@@ -107,7 +108,7 @@ apptainer exec --nv --bind /gscratch $PYTORCH python ${WORKDIR}/${SCRIPT}
 >
 > **Command breakdown:**
 > 
-> - `apptainer exec container.sif command`: Runs a command inside the container.
+> - `apptainer exec container.sif [command]`: Runs a command inside the container.
 > - `--nv`: Enables NVIDIA GPU support inside the container so CUDA-enabled applications can access the GPU.
 > - `--bind`: Binds /gscratch path on the host to the same path in the container so your data and scripts remain accessible.
 
@@ -140,13 +141,13 @@ GPU detected: Quadro RTX 6000
 Computation complete! Result checksum: 2.500e+11
 Elapsed time: 0.73 seconds
 
-Results saved to results.txt
+Results saved to pytorch_results.txt
 ```
 
 The Python script also writes a results file:
 
 ```bash
-cat results.txt
+cat pytorch_results.txt
 ```
 
 Example output:

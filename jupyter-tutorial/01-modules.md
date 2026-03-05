@@ -6,7 +6,7 @@ Each loaded module dynamically modifies your shell environment (e.g. `PATH`, `LD
 
 Instead of manually editing environment variables, you simply load or unload modules.
 
-## Understanding Your Environment
+## Understand Your Environment
 
 When you log in, your shell environment combines: 
 
@@ -24,7 +24,7 @@ View the value of the `PATH` environment variable:
 echo $PATH
 ```
 
-When you load a module, it typically *prepends* new paths to these variables so your system uses the correct version of software.
+When you load a module, it typically ***prepends*** new paths to these variables so your system uses the correct version of software.
 
 ## What is Lmod?
 
@@ -37,7 +37,7 @@ Lmod is a Lua-based implementation of the environment modules system. Through mo
 
 Lmod supports hierarchical module structures through `MODULEPATH`, which help prevent incompatible software combinations.
 
-> 📝 **NOTE:** On **Klone**, module commands are disabled on login nodes. Request a compute node before searching or loading any modules.
+> 📝 **NOTE:** **On Klone, module commands are disabled on login nodes.** Request a compute node before searching or loading any modules.
 
 ## Core Module Commands
 
@@ -51,7 +51,7 @@ The module command sets the appropriate environment variable independent of your
 | `module load [modules]` | Load modules |
 | `module swap [module1] [module2]` | Replace `module1` with `module2` |
 | `module unload [modules]` | Unload specific modules |
-| `module purge` | Unload ALL modules from the current environment |
+| `module purge` | Unload ***all*** modules from the current environment |
 | `module show [module]` | Show functions performed by loading module |
 | `module help [module]` | Show module-specific help message |
 | `module use [-a] [path]` | Prepend or append path to `MODULEPATH` |
@@ -67,11 +67,11 @@ Lmod provides a convenient shortcut command [`ml`](https://lmod.readthedocs.io/e
 | `ml -[module]` | `module unload [module]` |
 | `ml avail` | `module avail` |
 
-Any module sub-commands (e.g., avail, spider, show, etc.) can be written as `ml subcommand arg1 arg2`.
+Any module sub-commands (e.g., avail, spider, show, etc.) can be written as `ml subcommand [args]`.
 
-## Finding Modules
+## Find Modules
 
-### Using `module avail`
+### Use `module avail`
 
 List all modules visible in your current environment after starting an interactive session:
 
@@ -80,7 +80,7 @@ salloc -A uwit -p ckpt-all -N 1 --time=2:00:00
 module avail
 ```
 
-> 💡 **TIP:** **Klone** provides a shared directory under `/sw/contrib/mylab-src` where each group can install software intended for shared use across Klone users. See the [Hyak documentation](https://hyak.uw.edu/docs/tools/modules#how-do-i-create-shared-lmod-modules-on-klone) for instructions on creating and managing user-contributed Lmod modules.
+> 💡 **TIP:** **Klone** provides a shared directory under `/sw/contrib/mylab-src` where each group can install software intended for shared use across Klone users. See the [Hyak Documentation](https://hyak.uw.edu/docs/tools/modules#how-do-i-create-shared-lmod-modules-on-klone) for instructions on creating and managing user-contributed Lmod modules.
 
 To narrow results, for instance, if you want to see all `gcc` modules:
 
@@ -90,7 +90,7 @@ module avail gcc
 
 > 📝 **NOTE:** `module avail` doesn't show modules from all trees in the hierarchical system, which is the case for **Tillicum**.
 
-### Using `module spider` (Recommended)
+### Use `module spider` (Recommended)
 
 The `module spider` command performs a **deep search** across all module hierarchies, even ones not currently visible:
 
@@ -108,7 +108,7 @@ The above output also indicates a modulefile's complete name includes its name a
 
 > 📝 **NOTE:** `module spider` is the most reliable way to search installed software and learn what prerequisites must be loaded first. **Always use `module spider` instead of `module avail` to find out how to `module load`.**
 
-## Loading Modules on Klone
+## Load Modules on Klone
 
 To load a module on Klone, run:
 
@@ -116,7 +116,7 @@ To load a module on Klone, run:
 module load cuda/12.9.1
 ```
 
-> ⚠️ **WARNING:** Do not include `module load` commands in your startup files (e.g., `$HOME/.bashrc` and `$HOME/.bash_profile`). This can cause conflicts when switching environments in batch jobs and interactive sessions.
+> ⚠️ **WARNING:** Do not include `module load` commands in your startup files (e.g., `$HOME/.bashrc`, `$HOME/.bash_profile`). This can cause conflicts when switching environments in batch jobs and interactive sessions.
 
 ### What Happens When You Load a Module?
 
@@ -137,11 +137,11 @@ This is how modules safely modify your runtime environment.
 
 Tillicum uses a hierarchical module structure to ensure compatibility between software stacks.
 
-**Hierarchy Levels**
+### Hierarchy Levels
 
-In Lmod module hierarchy, each compiler module adds to the `MODULEPATH` a compiler version modulefile directory. Only modulefiles that exist in that directory are packages that have been built with that compiler. Similarly, applications that use libraries depending on MPI implementations must be built with the same compiler - MPI pairing. This leads to modulefile hierarchy.
+In Lmod module hierarchy, each compiler module adds to the `MODULEPATH` a compiler version modulefile directory. Only modulefiles that exist in that directory are packages that have been built with that compiler. Similarly, applications that use libraries depending on MPI implementations must be built with the same compiler/MPI pairing. This leads to modulefile hierarchy.
 
-**Steps to Load Modules**
+### Steps to Load Modules
 
 - Load a compiler (e.g., GCC) — only the modules built with that compiler becomes visible with `module avail`
 - Load MPI built with that compiler
@@ -151,7 +151,7 @@ This prevents mixing incompatible builds.
 
 **Example**
 
-With a clean environment `module avail` lists only the available core modules which include compilers.
+With a clean environment, `module avail` lists only the available core modules which include compilers.
 
 ```bash
 module avail
@@ -166,15 +166,11 @@ module avail
 
 Now CUDA modules built with GCC 13.4.0 become visible.
 
-```bash
-module load cuda/13.0.0
-module list
-```
-
 Then load CUDA and MPI:
 
 ```bash
-module load gcc cuda openmpi/5.0.8
+module load cuda/12.9.1
+module load openmpi/5.0.8
 module list
 ```
 
