@@ -38,7 +38,7 @@ From the OOD dashboard top menu, select **Interactive Apps** > **Jupyter**.
 ![Screenshot showing the OOD dashboard and an arrow indicating the Interactive Apps menu and showing the Jupyter.](./img/interactive_apps.png "Interactive Apps")
 *Screenshot showing the OOD dashboard. The arrow indicates the Interactive Apps menu and shows the Jupyter application.*
 
-**Step 2: Configure the Interactive Job**
+**Step 3: Configure the Interactive Job**
 
 You will be prompted to configure the resources for your Jupyter session.
 
@@ -67,7 +67,7 @@ Optional GPU settings if your workflow requires GPUs:
 
 Finally, click the **Launch** button.
 
-**Step 3: Wait for Job Allocation**
+**Step 4: Wait for Job Allocation**
 
 After submission, OOD will:
 
