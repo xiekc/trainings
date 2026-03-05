@@ -1,73 +1,54 @@
 # Conda Environment
 
-Conda allows you to create isolated environments that include specific versions of Python, libraries, and tools. 
+Conda allows you to create isolated environments that include specific versions of Python, libraries, and tools. This is essential in HPC environments, where reproducibility and dependency control are critical.
 
-A [conda cheatsheet](https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html) from Anaconda that you may find helpful.
+If you’re new to Conda, you may find this helpful: [Conda Cheatsheet](https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
 
 ## Load Conda Module
 
-First, load the Conda module:
+Hyak provides a minimal Miniforge (Conda) installation that you can utilize to build custom Conda environment. You must load it before using conda:
 
 ```bash
-$ module load conda
-________________________________________________________________________________
-Miniforge (conda) has been loaded.
-
-- Please create and work in your own conda environments:
-    conda create -n myenv python=3.11
-    conda activate myenv
-
-- To customize environment or package locations, edit your ~/.condarc:
-    envs_dirs:
-      - /path/to/your/envs
-    pkgs_dirs:
-      - /path/to/your/pkgs
-
-  For more information, see:
-    https://docs.conda.io/projects/conda/en/latest/configuration.html
-
-- If your personal Conda stops working after unloading this module, try:
-    source ~/.bashrc
-________________________________________________________________________________
+salloc -A uwit -p ckpt-all -N 1 --time=2:00:00
+module load conda
 ```
 
-After loading the module, the `conda` command becomes available. You can now create and manage your own environments.
+The `conda` command becomes available now.
+
+> 📝 **NOTE:** For Klone users, be sure to run the `module load` command on a compute node. After loading the system Conda module, you do not need to run `conda init` or modify your shell startup file (`$HOME/.bashrc`). The module handles environment setup for you.
 
 ## Create and Manage Conda Environments
 
-For example, create an environment named "myenv" with Python 3.12 and the NumPy package:
+### 1. Choose Where to Store Environments and Packages (Important)
+
+By default, the system Conda stores environments in your home directory (`$HOME/.conda/envs`). However, your home directory on Hyak has a **10 GB** quota, which is often insufficient. 
+
+We recommend installing Conda environments to your **project directory** under:
+
+- Klone: `/gscratch/<myproject>/<myfolder>`
+- Tillicum: `/gpfs/projects/<myproject>/<myfolder>`
+
+**Option A (Recommended): Configure Defaults in `$HOME/.condarc`**
+
+To store all of your environments and package caches in custom locations by default, edit (or create) your Conda configuration file:
 
 ```bash
-conda create --name myenv python=3.12 numpy
+nano ~/.condarc
 ```
 
-Activate the environment to use it:
+Add to the file opened:
 
-```bash
-conda activate myenv
+```yaml
+envs_dirs:
+  - /gscratch/<myproject>/<myfolder>/conda/envs
+pkgs_dirs:
+  - /gscratch/<myproject>/<myfolder>/conda/pkgs
+always_copy: true
 ```
 
-List your available Conda environments:
+Replace <myproject> and <myfolder> with real paths.
 
-```bash
-conda env list
-```
-
-Now your custom Conda environment is active and you can install additional packages using `conda install`. Conda has several default channels that will be used first for package installation. If you want to use another channel beyond the defaults channel, you can, but we suggest that you select your channel carefully.
-
-> ⚠️ **WARNING:** By default, the system Conda stores environments in your home directory ($HOME/.conda/envs). We recommend installing Conda environments to your **project directory** under `/gpfs/<myproject>/<myfolder>` (see instructions below) due to the limited storage space (10 GB) in your home directory.
-
-Remove an environment:
-
-```bash
-conda env remove --name myenv
-```
-
-## Customize Environment and Package Locations
-
-There are two ways to specify where your Conda environments and packages are stored.
-
-**Option 1. Use `--prefex` for explicit paths**
+**Option B: Use `--prefex` for Explicit Control**
 
 Manually set the path to your Conda environment by `--prefix` and always activate your Conda environment with full path.
 
@@ -75,26 +56,54 @@ Manually set the path to your Conda environment by `--prefix` and always activat
 module load conda
 conda create --prefix /gpfs/<myproject>/<myfolder>/myenv python=3.12
 conda activate /gpfs/<myproject>/<myfolder>/myenv
-conda install numpy scipy matplotlib
 ```
 
-**Option 2. Configure defaults in `$HOME/.condarc`**
+This gives you complete control over where each environment lives.
 
-To make this the default behavior, edit (or create) the file `$HOME/.condarc`:
+### 2. Create a Conda environment
 
-```yaml
-envs_dirs:
-  - /gpfs/<myproject>/<myfolder>/conda/envs
-pkgs_dirs:
-  - /gpfs/<myproject>/<myfolder>/conda/pkgs
+For example, create a custom Conda environment named "myenv" with Python 3.12 and other scientific packages installed:
+
+```bash
+module load conda
+conda create -n myenv python=3.12 numpy scipy pandas matplotlib
 ```
 
-This will place all of your environments and package caches in this directory by default, and you won't have to worry about specifying the full prefix to your environment when installing it or activating it.
+Activate the environment:
 
-## Installing Packages with `pip`
+```bash
+conda activate myenv
+```
 
-You can use `pip` inside a Conda environment to install Python packages. Anaconda provides some [best practices](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) for using `pip` with Conda. Our suggested use of pip is inside a conda environment. For example:
+Once activated, all `python`, `pip`, and `conda install` commands apply only to this environment. 
 
+Conda has several default channels that will be used first for package installation with `conda install`. You can use another channel beyond the default channels, but we suggest that you select your channel carefully.
+
+### 3. Manage Your Conda Environments
+
+List installed packages in current environment:
+
+```bash
+conda list
+```
+
+List available Conda environments:
+
+```bash
+conda env list
+```
+
+Remove an environment:
+
+```bash
+conda env remove --name myenv
+```
+
+## Install Packages with `pip`
+
+You can use `pip` inside a Conda environment to install Python packages. Anaconda provides some [best practices](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) for using `pip` with Conda. Our suggested use of pip is inside a conda environment.
+
+Example:
 ```bash
 module load conda
 conda activate myenv
@@ -105,6 +114,19 @@ This ensures that `pip` installs packages into the active Conda environment — 
 
 See the [pip documentation](https://pip.pypa.io/en/stable/cli/pip_install/) for more information.
 
-## (Optional) Containers
+> 💡 **Best practices on Hayk:**
+> 
+> - Use separate environments for different projects
+> - Use `pip install` inside a Conda environment
+> - Install CUDA-aware packages on a **GPU node**, with compatible CUDA module/version loaded before installation.
 
-Hyak supports Apptainer containers for running portable, reproducible software stacks. We highly recommend using containers to build your software environment on Hyak, particularly for GPU workflows with complex dependencies. [NVIDIA NGC Catalog](https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=&page=&pageSize=) has pre-built containers with CUDA and NVIDIA drivers configured, which work well with the Hyak environment.
+## Containers (Optional)
+
+Hyak supports Apptainer containers for portable, isolated software stacks. For complex GPU workflows, portable software stacks, or highly reproducible research, consider using Apptainer containers instead of Conda.
+
+Useful resources:
+
+- [NVIDIA's NGC Catalog](https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=&page=&pageSize=) provides prebuilt containers with CUDA and NVIDIA drivers configured
+- [Hyak Containers Documentation](https://hyak.uw.edu/docs/tools/containers)
+- [Klone Containers Tutorial](https://hyak.uw.edu/docs/hyak101/containers/syllabus)
+- [Tillicum Containers Tutorial](https://github.com/UWrc/tillicum-containers/)

@@ -2,25 +2,51 @@
 
 ## Overview
 
+This tutorial focuses on managing Python environments with Conda and using them effectively inside Jupyter Notebooks on Hyak via Open OnDemand.
+
+> 💡 **TIP:** While examples are demonstrated on **Klone**, the same workflow applies to **Tillicum** with minor modifications (e.g., using QOS instead of partition for Slurm).
+
+Working with Conda in an HPC environment can feel confusing at first — especially when combining:
+
+- LMOD software modules
+- Conda environments
+- Slurm job scheduling
+- Jupyter via Open OnDemand
+
+This tutorial is designed to connect all of these pieces into one coherent workflow that you can reuse for your research projects.
+
+🎯 **By completing this tutorial, you’ll learn how to:**
+
+- Load software using LMOD modules
+- Create and manage isolated Conda environments
+- Register Conda environments as Jupyter kernels
+- Launch and run Jupyter through Open OnDemand
+- Run Python scripts interactively and via Slurm batch jobs
+
 ## Repository Structure
 
 Each topic in this tutorial is contained in its own Markdown file for easy navigation:
 
 | Section | Description |
 | :- | :- |
+| [00-preparation.md](./00-preparation.md) | Account and access prerequisites |
 | [01-modules.md](./01-modules.md) | Using LMOD to load software modules |
-| [02-conda-env.md](./02-conda-env.md) | Setting up Conda environments |
-| [03-ood-jupyter.md](./03-ood-jupyter.md) | Running Jupyter Notebooks via Open OnDemand |
-| [04-task.md](./04-task.md) | Hands-on exercise |
+| [02-conda-env.md](./02-conda-env.md) | Creating, activating, and managing Conda environments on Hyak |
+| [03-python.md](./03-python.md) | Running Python scripts via Slurm (interactive and batch) |
+| [04-ood-jupyter.md](./04-ood-jupyter.md) | Launching Jupyter via Open OnDemand and switching kernels |
+| [05-task.md](./05-task.md) | Hands-on exercise: build an environment and use it in Jupyter |
 
 ## Introduction Video
 
-A link to the recording of the March 5, 2026 Hyak Jupyter workshop will be added here when available.
+A link to the recording of the **March 5, 2026 Hyak Jupyter workshop** will be added here when available.
 
 ## Feedback
 
-We’d love your feedback to help improve this tutorial and future Hyak trainings. After completing the tutorial or attending the workshop, please take a moment to fill out our feedback form.
+We’d love your feedback to help improve this tutorial and future Hyak trainings. After completing the tutorial or attending the workshop, please take a moment to fill out our [feedback form](https://forms.office.com/r/dNAQwnc6rY).
 
 ## Additional Resources
 
-> 🗓️ **Stay Tuned:** Check our [Research Computing Calendar](https://calendar.washington.edu/sea_uwit-rc) for upcoming training events.
+- [Hyak Documentation](https://hyak.uw.edu/docs)
+- [Conda Documentation for Managing Environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+- [Jupyter Documentation for Kernels](https://docs.jupyter.org/en/latest/projects/kernels.html)
+> 🗓️ **Stay tuned:** Check our [Research Computing Calendar](https://calendar.washington.edu/sea_uwit-rc) for upcoming training events.
