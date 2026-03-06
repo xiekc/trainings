@@ -50,7 +50,7 @@ For this tutorial, configure the form as follows:
 - **Account**: uwit (if available)
 - **Partition**: ckpt-all (community checkpoint resources; queue time may vary)
 - **Server Environment**: "Module: jupyter/minimal"
-> 📝 **NOTE:** The environments listed in the form are maintained by the Hyak team. In addition, you can also creat your own Jupyter-Apptainer image and select 'Custom Container'.
+> 📝 **NOTE:** The environments listed in the form are maintained by the Hyak team. In addition, you can also create your own Jupyter-Apptainer image and select 'Custom Container'.
 - **Jupyter User Interface**: JupyterLab (recommended). If you prefer the classic interface, select “Jupyter Notebook” instead.
 
 The following fields of the form set up the resources requested for your job:
@@ -200,8 +200,8 @@ Once registered, this kernel will appear alongside other Python environments in 
 
 In the **Launcher** tab of your JupyterLab session, select your custom kernel under the **Notebook** section.
 
-![Screenshot showing the Launcher tab. A squre box indicates all avaiable kernels under the Notebook section.](./img/custom_kernels.png "Custom kernels registered will appear")
-*Screenshot showing the Launcher tab. A squre box indicates all avaiable kernels under the Notebook section.*
+![Screenshot showing the Launcher tab. A squre box indicates all available kernels under the Notebook section.](./img/custom_kernels.png "Custom kernels registered will appear")
+*Screenshot showing the Launcher tab. A squre box indicates all available kernels under the Notebook section.*
 
 Your notebook will now run inside your custom Conda environment.
 

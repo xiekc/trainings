@@ -38,7 +38,11 @@ Each topic in this tutorial is contained in its own Markdown file for easy navig
 
 ## Introduction Video
 
-A link to the recording of the **March 5, 2026 Hyak Jupyter Workshop** will be added here when available.
+An optional introduction video accompanies this tutorial and provides a high-level walkthrough of the concepts covered:
+
+**March 5, 2026 Managing Python Environments with Conda in Jupyter on Hyak Workshop** will be added here when available.
+
+[Slide Deck](https://github.com/UWrc/jupyter-tutorial/blob/main/slides_python_jupyter.pdf) from live tutorial on March 5, 2026
 
 ## Feedback
 
