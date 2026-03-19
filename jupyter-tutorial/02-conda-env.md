@@ -40,9 +40,9 @@ Add to the file opened:
 
 ```yaml
 envs_dirs:
-  - /gscratch/<myproject>/<myfolder>/conda/envs
+  - /gscratch/<myproject>/<myfolder>/conda/envs
 pkgs_dirs:
-  - /gscratch/<myproject>/<myfolder>/conda/pkgs
+  - /gscratch/<myproject>/<myfolder>/conda/pkgs
 always_copy: true
 ```
 
